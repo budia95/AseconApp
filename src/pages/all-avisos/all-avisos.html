@@ -1,0 +1,48 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><ion-icon name='megaphone' is-active="false" color="asecon"></ion-icon> Avisos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="card-background-page" style="background-size: cover;
+background-color: transparent; background-image: url('assets/imgs/backgroundAvisos.jpg')">
+  <!-- <fieldset class="search" [formGroup]="searchForm">
+    <ion-input class="busqueda" formControlName="name" type="text" (keyup)="reloadAvisos()" placeholder="Buscar clases"></ion-input>
+    <ion-input class="busqueda" formControlName="tags" type="text" (keyup)="reloadAvisos()" placeholder="Buscar por tags"></ion-input>
+    <div class="rango">
+      <h4>Rango de precio: </h4>
+      <div class="izq">
+        <label>Min:</label><ion-input class="min" formControlName="min_price" type="text" (keyup)="reloadAvisos()" ></ion-input>
+      </div>
+      <div class="der">
+       <label>Max:</label><ion-input class="max" formControlName="max_price" type="text" (keyup)="reloadAvisos()" ></ion-input>
+      </div>
+    </div>
+  </fieldset> -->
+  <ion-item *ngFor="let aviso of avisos" no-lines>
+      <ion-card *ngIf="aviso.prioridad == 'Alto'">
+        <img src="assets/imgs/alto.jpg"/>
+        <div class="card-title" text-wrap>{{aviso.titulo}}</div>
+        <div class="card-subtitle" text-wrap>{{aviso.descripcion}}</div>
+        <div class="card-fecha"><ion-icon name="calendar"></ion-icon> {{aviso.fechaLimite}}</div>
+      </ion-card>
+      <ion-card *ngIf="aviso.prioridad == 'Medio'">
+          <img src="assets/imgs/medio.jpg"/>
+          <div class="card-title" text-wrap>{{aviso.titulo}}</div>
+          <div class="card-subtitle" text-wrap>{{aviso.descripcion}}</div>
+          <div class="card-fecha"><ion-icon name="calendar"></ion-icon> {{aviso.fechaLimite}}</div>
+        </ion-card>
+        <ion-card *ngIf="aviso.prioridad == 'Bajo'">
+            <img src="assets/imgs/bajo.jpg"/>
+            <div class="card-title" text-wrap>{{aviso.titulo}}</div>
+            <div class="card-subtitle" text-wrap>{{aviso.descripcion}}</div>
+            <div class="card-fecha"><ion-icon name="calendar"></ion-icon> {{aviso.fechaLimite}}</div>
+          </ion-card>
+     <br>
+  </ion-item>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><ion-icon name='cloud-upload' is active="false" color="asecon"></ion-icon> Responder petición</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="createEnvio">
+  <form id="formulario" [formGroup]="createEnvioForm" (ngSubmit)="createEnvio()">
+    <div class="createEnvio">
+        <fieldset>
+            <legend><span class="number">1</span> Petición</legend>
+            <ion-label><ion-icon name="bookmark"></ion-icon> Título</ion-label>
+            <br>
+            <p>{{peticion.titulo}}</p>
+
+            <ion-label><ion-icon name="quote"></ion-icon> Descripción</ion-label>
+            <br>
+            <p>{{peticion.descripcion}}</p>
+
+            <ion-label><ion-icon name="calendar"></ion-icon> Fecha envio - Fecha límite</ion-label>
+            <br>
+            <p>{{peticion.fechaEnvio}} - {{peticion.fechaLimite}}</p>
+      </fieldset>
+      <fieldset>
+        <legend><span class="number">2</span> Envío</legend>
+        <ion-label>Título</ion-label>
+        <ion-input type="text" formControlName="titulo" placeholder="Debe rellenar este campo"></ion-input>
+        
+        <ion-label>Archivo</ion-label>
+        <ion-input type="text" formControlName="archivo"></ion-input>
+
+      <button class="enter" ion-button round type="submit" [disabled]="!createEnvioForm.valid">Crear</button>
+      </fieldset>
+    </div>
+
+  </form>
+</ion-content>

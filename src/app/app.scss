@@ -14,3 +14,74 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.ion-md-help-buoy:before, .ion-ios-help-buoy:before ,.ion-md-log-out:before, .ion-ios-log-out:before {
+    font-size: 32px;
+  }
+  
+  .bar-button-menutoggle {
+      color: color($colors, dark);
+  
+  }
+  
+  
+  
+  ///////////// FORMS //////////////////////
+  
+  .user-email {
+    display: inline-block;
+    margin-top: 4px;
+  }
+
+  form {
+    ion-item.item {
+      padding: 0;
+      &.input-has-focus {
+        .item-inner {
+          border-bottom-color: color($colors, primary) !important;
+          caret-color: color($colors, primary);
+        }
+      }
+      &.input-has-focus, &.input-has-value {
+        ion-label {
+          font-size: 12px;
+          top: 0;
+          margin: 0;
+        }
+      }
+      &.ng-invalid.input-has-value:not(.ng-pristine, .input-has-focus) {
+        .item-inner {
+          border-bottom-color: color($colors, error) !important;
+        }
+        & + .error-message {
+          display: block;
+        }
+      }
+      & + .error-message {
+        display: none;
+        float: left;
+        margin: 5px 0 0;
+        color: color($colors, error);
+      }
+      .item-inner {
+        border-bottom: 2px solid rgba(0, 0, 0, 0.12) !important;
+        box-shadow: none !important;
+      }
+      .input-wrapper {
+        padding-top: 10px;
+      }
+      ion-label {
+        position: absolute;
+        transition: 0.2s linear all;
+        color: rgba(0, 0, 0, 0.38);
+        top: 10px;
+      }
+      .label + ion-input .text-input {
+        margin-left: 0;
+      }
+      input {
+        font-size: 16px;
+        color: color($colors, dark_gray);
+      }
+    }
+  }

@@ -3,16 +3,43 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title><ion-icon name="home" color="asecon"></ion-icon> Inicio</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+    <div *ngIf="logueado == false" class="letras">
+        <ion-card style="border-radius: 30px;">
+            <ion-card-content>
+              <ion-card-title>
+                  <p style="text-align:center; color:#0b4c46;"><ion-icon name="information-circle"></ion-icon></p>
+                  <p style="text-align:center; color:#0b4c46;">¿Eres cliente de Asecon Consultores?</p>
+                  <i><p style="text-align:center; color:#0b4c46;"><ion-icon name="finger-print"></ion-icon> Pulsa nuestro logo</p> </i>
+                </ion-card-title>
+            </ion-card-content>
+            
+          </ion-card>
+    </div>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <div class="card-archivo">
+    <div class="contenido">
+      <button ion-button round color="asecon" (click)="areas()">
+        <ion-icon name="ios-briefcase"></ion-icon>
+      </button>
+    </div>
+    <div class="contenido">
+      <button ion-button round color="asecon" (click)="geo()">
+          <ion-icon name="pin"></ion-icon>
+        </button>
+      </div>
+    <div class="contenido">
+      <button ion-button round color="asecon" (click)="contacto()">
+        <ion-icon name="ios-people" ></ion-icon>
+      </button>
+    </div>
+    </div>
+    <div *ngIf="logueado == false" class="login">
+      <button (click)="login()"></button>    
+    </div>
 </ion-content>

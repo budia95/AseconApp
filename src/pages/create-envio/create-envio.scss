@@ -1,0 +1,113 @@
+create-envio{
+  ion-select{
+    position:relative;
+  }
+  .createEnvio{
+    padding: 10px 20px;
+    background: #f4f7f8;
+    margin: 10px auto;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  .createEnvio fieldset{
+    border: none;
+  }
+  .createEnvio legend {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+  }
+  .createEnvio ion-label {
+    display: block;
+    margin-bottom:10px;
+    font-weight: bold;
+  }
+
+  .createEnvio p {
+    margin-left : 10px;
+  }
+  .createEnvio ion-input {
+    background: rgba(255,255,255,.1);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 0;
+    outline: 0;
+    padding: 0px;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background-color: #e8eeef;
+    color:#8a97a0;
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 20px;
+  }
+  .createEnvio .number {
+    background: #0b4c46;
+    color: #fff;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    font-size: 0.8em;
+    margin-right: 4px;
+    line-height: 30px;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+    border-radius: 15px 15px 15px 0px;
+  }
+
+  .createEnvio .date{
+    background: rgba(255,255,255,.1);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 0;
+    outline: 0;
+    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background-color: #e8eeef;
+    color:#8a97a0;
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .createEnvio .enter {
+    position: relative;
+    display: block;
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    margin: 0 auto;
+    background: #1abc9c;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    width: 100%;
+    border: 1px solid #16a085;
+    border-width: 1px 1px 3px;
+    margin-bottom: 10px;
+  }
+
+  .createEnvio .enter:hover
+  {
+    background: #0b4c46;
+    border: 1px solid black;
+    border-width: 1px 1px 3px;
+  }
+
+  ion-select{
+    background-color: #e8eeef;
+    margin-bottom: 10px;
+  }
+
+  p{
+    font-size: 14px;
+    text-align: left;
+    margin-top: -15px;
+  }
+}

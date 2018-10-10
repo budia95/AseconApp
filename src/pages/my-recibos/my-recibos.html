@@ -1,0 +1,37 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><ion-icon name='copy' is-active="false" color="asecon"></ion-icon> Recibos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="card-background-page" style="background-size: cover;
+background-color: transparent; background-image: url('assets/imgs/background.png')">
+ <!--  <fieldset class="search" [formGroup]="searchForm">
+    <ion-input class="busqueda" formControlName="name" type="text" (keyup)="reloadEnvios()" placeholder="Buscar clases"></ion-input>
+    <ion-input class="busqueda" formControlName="tags" type="text" (keyup)="reloadEnvios()" placeholder="Buscar por tags"></ion-input>
+    <div class="rango">
+      <h4>Rango de precio: </h4>
+      <div class="izq">
+        <label>Min:</label><ion-input class="min" formControlName="min_price" type="text" (keyup)="reloadEnvios()" ></ion-input>
+      </div>
+      <div class="der">
+       <label>Max:</label><ion-input class="max" formControlName="max_price" type="text" (keyup)="reloadEnvios()" ></ion-input>
+      </div>
+    </div>
+  </fieldset>
+ -->
+    <ion-item *ngFor="let recibo of recibos" style="background :transparent;" no-lines>
+      <ion-card>
+        <img src="assets/imgs/recibos.jpg"/>
+        <div class="card-title" text-wrap >{{recibo.titulo}}</div>
+        <div class="card-fecha"><ion-icon name="calendar"></ion-icon> {{recibo.fecha}}</div>
+        <div class="card-archivo"><button ion-button round color="asecon"><ion-icon name="download"></ion-icon></button></div>
+      </ion-card>
+     <br>
+    </ion-item>
+</ion-content>

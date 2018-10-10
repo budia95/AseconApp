@@ -1,0 +1,71 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><ion-icon name='heart' is-active="false" color="asecon"></ion-icon> Noticias</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-size: cover;
+background-color: transparent; background-image: url('assets/imgs/backgroundNews.jpg')">
+  <!-- <fieldset class="search" [formGroup]="searchForm">
+    <ion-input class="busqueda" formControlName="name" type="text" (keyup)="reloadNews()" placeholder="Buscar clases"></ion-input>
+    <ion-input class="busqueda" formControlName="tags" type="text" (keyup)="reloadNews()" placeholder="Buscar por tags"></ion-input>
+    <div class="rango">
+      <h4>Rango de fechas: </h4>
+      <div class="izq">
+        <label></label><ion-input class="min" formControlName="min_price" type="text" (keyup)="reloadNews()" ></ion-input>
+      </div>
+      <div class="der">
+       <label>Max:</label><ion-input class="max" formControlName="max_price" type="text" (keyup)="reloadNews()" ></ion-input>
+      </div>
+    </div>
+  </fieldset> -->
+
+    <ion-item *ngFor="let noticia of noticias" style="background :transparent;" no-lines>
+      <ion-card>
+        <ion-item text-wrap>
+          <ion-avatar item-start>
+            <img src="../assets/imgs/logo.jpg">
+          </ion-avatar>
+          <h2>{{noticia.titulo}}</h2>
+          <p><ion-icon name="calendar"></ion-icon> {{noticia.fecha}}</p>
+        </ion-item>
+      
+        <img src="{{noticia.foto}}">
+      
+        <ion-card-content style="overflow:hidden;">
+          <p>{{noticia.descripcion}}</p>
+          <button (click)="ampliarDescripcion(noticia.titulo, noticia.descripcion)">ver más</button>
+        <ion-row>
+          <ion-col *ngIf="containsNew(noticia.noticia_id) == true" >
+            <button ion-button icon-start clear small (click)="removeNew(noticia.noticia_id)">
+              <ion-icon name="heart" color="danger"></ion-icon>
+              <div>likes</div>
+            </button>
+          </ion-col>
+          <ion-col *ngIf="containsNew(noticia.noticia_id) == false">
+            <button ion-button icon-start clear small (click)="addNew(noticia.noticia_id)">
+                <ion-icon name="heart" color="asecon"></ion-icon>
+                <div>likes</div>
+              </button>
+          </ion-col>
+          <ion-col>
+            <a ion-button icon-start clear small href="{{noticia.url}}">
+              <ion-icon name="share-alt" color="secondary"></ion-icon>
+            </a>
+          </ion-col>
+          <ion-col center text-center>
+            <button ion-button icon-start clear small (click)="shareNew(noticia)" >
+              <ion-icon name="share" color="primary"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+        </ion-card-content>
+     </ion-card>
+     <br>
+    </ion-item>
+</ion-content>
