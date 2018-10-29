@@ -12,7 +12,7 @@ import { Storage } from '@ionic/storage';
 })
 export class MyPeticionesPage {
 
-  peticiones: any[] = [];
+  peticiones: any;
   searchForm: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private peticionesProvider: PeticionesProvider,  public toastCtrl: ToastController,
@@ -20,7 +20,7 @@ export class MyPeticionesPage {
      
     this.storage.get('usuario').then(data => {
       this.peticionesProvider.myPeticiones(data).then(data => {
-        this.peticiones = data['peticion'];
+        this.peticiones = data;
         console.log(data);
       }).catch(err => {
         console.log('No autorizado');

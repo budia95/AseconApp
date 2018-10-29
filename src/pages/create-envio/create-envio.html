@@ -8,33 +8,30 @@
 </ion-header>
 
 <ion-content class="createEnvio">
-  <form id="formulario" [formGroup]="createEnvioForm" (ngSubmit)="createEnvio()">
     <div class="createEnvio">
         <fieldset>
             <legend><span class="number">1</span> Petición</legend>
             <ion-label><ion-icon name="bookmark"></ion-icon> Título</ion-label>
             <br>
-            <p>{{peticion.titulo}}</p>
+            <p>{{peticion.fields.titulo}}</p>
 
             <ion-label><ion-icon name="quote"></ion-icon> Descripción</ion-label>
             <br>
-            <p>{{peticion.descripcion}}</p>
+            <p>{{peticion.fields.descripcion}}</p>
 
             <ion-label><ion-icon name="calendar"></ion-icon> Fecha envio - Fecha límite</ion-label>
             <br>
-            <p>{{peticion.fechaEnvio}} - {{peticion.fechaLimite}}</p>
+            <p>{{peticion.fields.fechaEnvio}} - {{peticion.fields.fechaLimite}}</p>
       </fieldset>
       <fieldset>
+        <form id="formulario" [formGroup]="createEnvioForm" (ngSubmit)="createEnvio()" method="POST">
         <legend><span class="number">2</span> Envío</legend>
         <ion-label>Título</ion-label>
         <ion-input type="text" formControlName="titulo" placeholder="Debe rellenar este campo"></ion-input>
-        
-        <ion-label>Archivo</ion-label>
-        <ion-input type="text" formControlName="archivo"></ion-input>
-
-      <button class="enter" ion-button round type="submit" [disabled]="!createEnvioForm.valid">Crear</button>
+        <ion-label>Adjuntar archivo</ion-label>
+        <button ion-button (click)="openDoc()" color="asecon"><ion-icon name="folder-open"></ion-icon></button>
+      <button class="enter" ion-button round type="submit" [disabled]="!createEnvioForm.valid && !hasArchivo">Responder</button>
+      </form>
       </fieldset>
     </div>
-
-  </form>
 </ion-content>

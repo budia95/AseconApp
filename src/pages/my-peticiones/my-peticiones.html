@@ -26,11 +26,11 @@ background-color: transparent; background-image: url('assets/imgs/backgroundEnvi
   </fieldset>
  -->
     <ion-item *ngFor="let peticion of peticiones" style="background :transparent;" no-lines>
-      <ion-card>
+      <ion-card *ngIf="peticion.fields.resuelto == 0">
         <img src="assets/imgs/peticiones.jpg"/>
-        <div class="card-title">{{peticion.titulo}}</div>
-        <div class="card-subtitle">{{peticion.descripcion}}</div>
-        <div class="card-fechas"><ion-icon name="send"></ion-icon> {{peticion.fechaEnvio}} - {{peticion.fechaLimite}} <ion-icon name="alert"></ion-icon></div>
+        <div class="card-title">{{peticion.fields.titulo}}</div>
+        <div class="card-subtitle">{{peticion.fields.descripcion}}</div>
+        <div class="card-fechas"><ion-icon name="send"></ion-icon> {{peticion.fields.fechaEnvio}} - {{peticion.fields.fechaLimite}} <ion-icon name="alert"></ion-icon></div>
         <div class="envio"><button (click)="createEnvio(peticion)" ion-button round color="asecon"><ion-icon name="paper-plane"></ion-icon></button></div>
       </ion-card>
      <br>

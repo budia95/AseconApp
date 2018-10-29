@@ -15,37 +15,44 @@ export class NewsProvider {
   }
 
   news() {
-    return this.api.get('listNews.php').then(data => {
+    return this.api.get2('listNews').then(data => {
       return data
     });
   }
 
+  news2() {
+    return this.api.get2('listNews').then(data => {
+      return data
+    });
+  }
+
+
   noticiasUsuarios() {
-    return this.api.get('noticiasUsuarios.php').then(data => {
+    return this.api.get2('noticiasUsuarios').then(data => {
       return data
     });
   }
 
   myNews(user_id) {
-    return this.api.get('myNews.php',{user_id:user_id}).then(data => {
+    return this.api.get2('myNews',{usuario_id:user_id}).then(data => {
       return data;
     });;
   }
 
   addNew(usuario_id, noticia_id) {
-    return this.api.get('addNew.php', {noticia_id:noticia_id,usuario_id:usuario_id}).then(data => {
+    return this.api.post('addNew', {noticia_id:noticia_id,usuario_id:usuario_id}).then(data => {
       return data;
     });;
   }
 
   removeNew(usuario_id, noticia_id) {
-    return this.api.get('removeNew.php', {noticia_id:noticia_id,usuario_id:usuario_id}).then(data => {
+    return this.api.post('removeNew', JSON.stringify({noticia_id:noticia_id,usuario_id:usuario_id})).then(data => {
       return data;
     });;
   }
 
   contieneNews(user_id) {
-    return this.api.get('containsNews.php',{user_id:user_id}).then(data => {
+    return this.api.get2('containsNews',{usuario_id:user_id}).then(data => {
       return data;
     });;
   }

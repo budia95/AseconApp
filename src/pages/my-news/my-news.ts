@@ -13,15 +13,15 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 })
 export class MyNewsPage {
 
-  noticias: any[] = [];
+  noticias: any;
   searchForm: any;
-  noticiasUsuarios: any[] = [];
-  noticiasFav : any [] = [];
+  noticiasUsuarios: any;
+  noticiasFav : any;
 
   ionViewWillEnter(){
     this.storage.get('usuario').then(data => {
       this.newsProvider.myNews(data).then(data => {
-        this.noticias = data['noticia'];
+        this.noticias = data;
         console.log(data);
       }).catch(err => {
         console.log('No autorizado');
@@ -44,7 +44,7 @@ export class MyNewsPage {
     
     this.storage.get('usuario').then(data => {
       this.newsProvider.contieneNews(data).then(data => {
-        this.noticiasFav = data['noticia'];
+        this.noticiasFav = data;
         console.log(data);
       }).catch(err => {
         console.log('No autorizado');
@@ -66,7 +66,7 @@ export class MyNewsPage {
     });
 
     this.newsProvider.noticiasUsuarios().then(data => {
-      this.noticiasUsuarios = data['noticia'];
+      this.noticiasUsuarios = data;
     }).catch(err => {
       console.log(err.error);
       this.toastCtrl.create({
@@ -156,7 +156,7 @@ export class MyNewsPage {
     }
     else{
       for(i=0; this.noticiasFav.length>i;i++){
-        if(this.noticiasFav[i]['noticia_id'] == noticia_id){
+        if(this.noticiasFav[i]["fields"]['noticia_id'] == noticia_id){
           res = true;
           break;
         }

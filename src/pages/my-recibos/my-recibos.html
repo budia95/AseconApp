@@ -28,9 +28,9 @@ background-color: transparent; background-image: url('assets/imgs/background.png
     <ion-item *ngFor="let recibo of recibos" style="background :transparent;" no-lines>
       <ion-card>
         <img src="assets/imgs/recibos.jpg"/>
-        <div class="card-title" text-wrap >{{recibo.titulo}}</div>
-        <div class="card-fecha"><ion-icon name="calendar"></ion-icon> {{recibo.fecha}}</div>
-        <div class="card-archivo"><button ion-button round color="asecon"><ion-icon name="download"></ion-icon></button></div>
+        <div class="card-title" text-wrap >{{recibo.fields.titulo}}</div>
+        <div class="card-fecha"><ion-icon name="calendar"></ion-icon> {{recibo.fields.fecha}}</div>
+        <div class="card-archivo"><button ion-button round color="asecon" (click)="descargar(recibo.fields)"><ion-icon name="download"></ion-icon></button></div>
       </ion-card>
      <br>
     </ion-item>

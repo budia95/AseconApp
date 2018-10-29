@@ -11,7 +11,7 @@ import { AvisosProvider} from '../../providers/avisos/avisos'
 })
 export class AllAvisosPage {
 
-  avisos: any[] = [];
+  avisos: any;
   searchForm: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -24,7 +24,7 @@ export class AllAvisosPage {
     });
  */
     this.avisosProvider.avisos().then(data => {
-      this.avisos = data['aviso'];
+      this.avisos = data;
     }).catch(err => {
       console.log(err.error);
       this.toastCtrl.create({

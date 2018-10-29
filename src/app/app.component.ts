@@ -1,3 +1,4 @@
+import { DisplayUserPage } from './../pages/display-user/display-user';
 import { TabsPage } from './../pages/tabs/tabs';
 import { Tabs2Page } from './../pages/tabs2/tabs2';
 import { LoginPage } from './../pages/login/login';
@@ -11,7 +12,6 @@ import {Storage} from "@ionic/storage";
 import { HomePage } from '../pages/home/home';
 import { AllAvisosPage } from '../pages/all-avisos/all-avisos';
 import { MyRecibosPage } from '../pages/my-recibos/my-recibos';
-import { DisplayUserPage } from '../pages/display-user/display-user';
 
 @Component({
   templateUrl: 'app.html'

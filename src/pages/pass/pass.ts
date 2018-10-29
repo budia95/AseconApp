@@ -1,3 +1,4 @@
+import { HomePage } from './../home/home';
 import { DisplayUserPage } from './../display-user/display-user';
 import { UserProvider } from './../../providers/user/user';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
@@ -11,18 +12,14 @@ import {
   AlertController
 } from 'ionic-angular';
 
-import {HomePage} from "../home/home";
-import { assert } from 'ionic-angular/umd/util/util';
-
-
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html'
+  selector: 'page-pass',
+  templateUrl: 'pass.html'
 })
-export class LoginPage {
+export class PassPage {
 
-  loginForm: FormGroup;
-  emailError: boolean = false;
+  passForm: FormGroup;
+  passwordError: boolean = false;
   show: boolean = false;
   user : any;
   aux : any;
@@ -31,59 +28,58 @@ export class LoginPage {
               private toastCtrl: ToastController, public events: Events, public auth: AuthServiceProvider, public userProvider: UserProvider,
               public menu: MenuController) {
 
-
-    // TODO: Already logged -> Redirect to main page
-    this.storage.get('usuario').then((val) => {
-      if (val !== null) {
-        this.menu.enable(true, 'leftMenu');
-        this.navCtrl.setRoot(HomePage);
-      }
-    });
-
-    this.loginForm = this.formBuilder.group({
-      email: new FormControl('', [Validators.required, Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')]),
+    this.passForm = this.formBuilder.group({
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
       session: new FormControl(false),
       type: new FormControl('')
-    });
+    },{validator: this.matchingPasswords('password', 'confirmPassword')});
 
   }
+  matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
+    // TODO maybe use this https://github.com/yuyang041060120/ng2-validation#notequalto-1
+    return (group: FormGroup): {[key: string]: any} => {
+      let password = group.controls[passwordKey];
+      let confirmPassword = group.controls[confirmPasswordKey];
 
-  login() {
-    let user = {
-      email: this.loginForm.value.email,
-      password: this.loginForm.value.password
-    };
-
-    this.userProvider.getUser(user.email, user.password).then(data => {
-     
-      console.log(data.toString());
-      if(data.toString() === ''){
-        this.toastCtrl.create({
-          message: 'Usuario o contraseña incorrectos.',
-          duration: 3000,
-          position: 'bottom'
-        }).present({});
+      if (password.value !== confirmPassword.value) {
+        return {
+          mismatchedPasswords: true
+        };
       }
-      else{
-        this.storage.set('usuario', data[0]["pk"]).then(data => {
-          this.events.publish('login:update', data);
-          // TODO: Login susccesfully -> Redirect to main page
-          this.menu.enable(true, 'leftMenu');
-          this.navCtrl.setRoot(HomePage, {}, {animate: true, direction: 'forward'});
-        }).catch(err => {
-          console.log(err.error);
+    }
+  }
+
+  changePass() {
+
+    this.storage.get('usuario').then(data => {
+
+      let changePass = {
+        usuario_id : data,
+        password : this.passForm.value.password
+      }
+
+      this.userProvider.changePass(changePass).then(data => {
+        console.log(data.toString());
+        if(data.toString() === ''){
           this.toastCtrl.create({
-            message: err.error,
+            message: 'Contraseña no válida.',
             duration: 3000,
             position: 'bottom'
           }).present({});
-        });
-      }
-     
-     
-      
-    })
+        }
+        else{
+          let alert = this.alertCtrl.create({
+            message: 'La contraseña se ha actualizado correctamente.'
+          });
+          alert.present();
+          this.menu.enable(true, 'leftMenu');
+          this.navCtrl.setRoot(HomePage);
+        }
+      });
+    }).catch(err => {
+
+    });
 
   
 
@@ -113,10 +109,10 @@ export class LoginPage {
   }
 
   validateEmail() {
-    if (this.loginForm.controls['email'].errors && this.loginForm.value.email) {
-      this.emailError = true;
+    if (this.passForm.controls['password'].errors && this.passForm.value.password) {
+      this.passwordError = true;
     } else {
-      this.emailError = false;
+      this.passwordError = false;
     }
   }
 

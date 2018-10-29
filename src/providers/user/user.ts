@@ -20,13 +20,19 @@ export class UserProvider {
   }
 
   getUser(email,password) {
-    return  this.api.get('getUser.php',{email:email,password:password}).then(data => {
+    return  this.api.post('getUser',JSON.stringify({email:email,password:password})).then(data => {
       return data;
     });
   }
 
   displayUser(id) {
-    return  this.api.get('displayUser.php',{id:id}).then(data => {
+    return  this.api.get2('displayUser',{usuario_id:id}).then(data => {
+      return data;
+    });
+  }
+
+  changePass(envio) {
+    return  this.api.post('changePass',JSON.stringify(envio)).then(data => {
       return data;
     });
   }

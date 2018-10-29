@@ -4,6 +4,11 @@ import { Component } from '@angular/core';
 import {AlertController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import {Storage} from '@ionic/storage';
+import { FileChooser } from '@ionic-native/file-chooser';
+import { IOSFilePicker } from '@ionic-native/file-picker';
+import { Platform } from 'ionic-angular';
+import { FilePath } from '@ionic-native/file-path';
+import { Base64 } from '@ionic-native/base64';
 
 @Component({
   selector: 'create-envio',
@@ -13,39 +18,88 @@ export class CreateEnvioPage {
 
   createEnvioForm: FormGroup;
   peticion : any;
+  archivo : any;
+  tipoArchivo : any;
+  arrayPath : any;
+  hasArchivo : boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private enviosProvider: EnviosProvider,
-              private alertCtrl: AlertController, public storage : Storage) {
+              private alertCtrl: AlertController, public storage : Storage, private fileChooser: FileChooser, private filePicker: IOSFilePicker, 
+              public plt: Platform, private filePath : FilePath, private base64 : Base64) {
     this.createEnvioForm = this.formBuilder.group({
-      titulo: new FormControl('', [Validators.required, Validators.minLength(1),]),
-      archivo : new FormControl('', [Validators.required,]),
+      titulo: new FormControl('', [Validators.required, Validators.minLength(1),])
     });
 
     this.peticion = this.navParams.data;
+
+  }
+
+  openDoc(){
+    if (this.plt.is('android')) {
+        this.fileChooser.open()
+        .then(uri => {
+          this.filePath.resolveNativePath(uri)
+          .then(file => {
+            let filePath: string = file;
+            this.arrayPath = file.split(".");
+            this.tipoArchivo = this.arrayPath[1];
+            if (filePath) {
+              this.base64.encodeFile(filePath)
+                      .then((base64File: string) => {
+                        this.archivo = base64File;
+                        this.hasArchivo = true;
+              }).catch(err => {
+                alert('err'+JSON.stringify(err));
+              });
+            }
+      })
+      .catch(err => {console.log(err)});
+        })
+        .catch(e =>{
+          let alert = this.alertCtrl.create({
+            message: e,
+          });
+          alert.present();
+          console.log(e);
+        });
+  } 
+    else if(this.plt.is('ios')){
+      this.filePicker.pickFile()
+      .then(uri => {
+        let alert = this.alertCtrl.create({
+          message: uri,
+        });
+        alert.present();
+        console.log(uri)
+      })
+      .catch(err => console.log('Error', err));
+    }
   }
 
   createEnvio(envio) {
     console.log(this.navParams);
 
-      this.storage.get('usuario').then(data => {
-        let envio = {
-          titulo: this.createEnvioForm.value.titulo,
-          fecha: this.getDate(),
-          archivo: this.createEnvioForm.value.archivo,
-          usuario_id : data,
-          peticion_id : this.peticion['peticion_id']
-        };
+        this.storage.get('usuario').then(data => {
 
-        this.enviosProvider.createEnvio(envio).then(data => {
-          this.envioCreated();
-          console.log(data);
-          this.navCtrl.setRoot(MyEnviosPage);
-        }).catch(error =>{
+          let envio = {
+            titulo : this.createEnvioForm.value.titulo,
+            usuario_id : data,
+            peticion_id : this.peticion['pk'],
+            archivo : this.archivo,
+            extension : this.tipoArchivo
+          }
 
-        })
-      }).catch(error => {
+          this.enviosProvider.createEnvio(envio).then(data => {
+            this.envioCreated();
+            console.log(data);
+            this.navCtrl.setRoot(MyEnviosPage);
+            }).catch(error =>{
+              console.log(error);
+            });
+        }).catch(error => {
+          console.log(error);
+          });
 
-      });
     
   }
 

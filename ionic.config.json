@@ -7,7 +7,7 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "http://localhost/asecon_remota"
+      "proxyUrl": "http://ardbud.pythonanywhere.com/api"
     }
   ]
 }

@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { ApiProvider } from '../api/api';
 
@@ -15,13 +14,13 @@ export class EnviosProvider {
   }
 
   createEnvio(envio) {
-    return this.api.get('createEnvio.php', envio).then(data => {
+    return this.api.post('createEnvio', JSON.stringify(envio)).then(data => {
       return data;
     });;
   }
 
   myEnvios(user_id) {
-    return this.api.get('myEnvios.php', {user_id:user_id}).then(data => {
+    return this.api.get2('myEnvios', {user_id:user_id}).then(data => {
       return data;
     });
   }

@@ -1,4 +1,3 @@
-
 import { AreasPage } from'./../pages/areas/areas';
 import { Tabs2Page } from './../pages/tabs2/tabs2';
 import { TabsPage } from './../pages/tabs/tabs';
@@ -14,7 +13,14 @@ import {ContactoPage} from './../pages/contacto/contacto';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FileChooser } from '@ionic-native/file-chooser';
 import { TokenInterceptor } from '../providers/api/TokenInterceptor';
+import { IOSFilePicker } from '@ionic-native/file-picker';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';  
+import { File } from '@ionic-native/file';
+import { InAppBrowser } from '@ionic-native/in-app-browser'
+import { FilePath } from '@ionic-native/file-path'
+import { Base64 } from '@ionic-native/base64'
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -28,6 +34,7 @@ import {MyPeticionesPage} from "../pages/my-peticiones/my-peticiones";
 import {MyNewsPage} from "../pages/my-news/my-news";
 import {MyRecibosPage} from "../pages/my-recibos/my-recibos";
 import {DisplayUserPage} from "../pages/display-user/display-user";
+import { PassPage } from "../pages/pass/pass";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -56,7 +63,8 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     Tabs2Page,
     AreasPage,
     GeoPage,
-    ContactoPage
+    ContactoPage,
+    PassPage
   ],
 
   imports: [
@@ -84,7 +92,8 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     Tabs2Page,
     AreasPage,
     GeoPage,
-    ContactoPage
+    ContactoPage,
+    PassPage
   ],
 
   providers: [
@@ -100,6 +109,14 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     PeticionesProvider,
     RecibosProvider,
     UserProvider,
+    FileChooser,
+    IOSFilePicker,
+    FileTransfer,  
+    FileTransferObject,  
+    File,
+    FilePath,
+    Base64,
+    InAppBrowser,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

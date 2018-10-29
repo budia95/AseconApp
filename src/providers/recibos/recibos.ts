@@ -15,7 +15,7 @@ export class RecibosProvider {
   }
 
   myRecibos(usuario_id) {
-    return this.api.get('myRecibos.php',{usuario_id:usuario_id}).then(data => {
+    return this.api.get2('myRecibos',{usuario_id:usuario_id}).then(data => {
       return data;
     });;
   }

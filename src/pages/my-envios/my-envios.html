@@ -26,11 +26,11 @@ background-color: transparent; background-image: url('assets/imgs/backgroundEnvi
   </fieldset>
  -->
     <ion-item *ngFor="let envio of envios" style="background :transparent;" no-lines>
-      <ion-card>
+      <ion-card >
         <img src="assets/imgs/envios.jpg"/>
-        <div class="card-title" text-wrap>{{envio.titulo}}</div>
-        <div class="card-fecha"><ion-icon name="send"></ion-icon> {{envio.fecha}}</div>
-        <div class="card-archivo"><button ion-button round color="azulBoton"><ion-icon name="download"></ion-icon></button></div>
+        <div class="card-title" text-wrap>{{envio.fields.titulo}}</div>
+        <div class="card-fecha"><ion-icon name="send"></ion-icon> {{envio.fields.fecha}}</div>
+        <div class="card-archivo"><button ion-button round color="azulBoton" (click)="descargar(envio.fields)"><ion-icon name="eye"></ion-icon></button></div>
       </ion-card>
      <br>
     </ion-item>

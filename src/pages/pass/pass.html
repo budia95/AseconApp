@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><ion-icon name='ios-person-add' is-active="false" color="asecon"></ion-icon> Login</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-card style="border-radius: 25px; width: 80%; position:absolute; left: 8%;">
+      <img src="assets/imgs/logo2.jpg"/>
+      <ion-card-content>
+          <div class="content-align-wrapper">
+              <div class="content-align">
+          
+                <form [formGroup]="passForm" (ngSubmit)="changePass()" method="POST">
+          
+                  <div class="password-input">
+                    <ion-input [type]="show ? 'text' : 'password'" formControlName="password" aria-placeholder="Contraseña"></ion-input>
+                  <a (click)="togglePassword()">{{ show ? 'ocultar' : 'mostrar' }}</a>
+                  </div>
+          
+                  <div class="password-input">
+                      <ion-input [type]="show ? 'text' : 'password'" formControlName="confirmPassword" aria-placeholder="Repetir contraseña"></ion-input>
+                  </div>
+          
+                  <button class="enter" ion-button type="submit" [disabled]="!passForm.valid">Cambiar</button>
+                </form>
+              </div>
+            </div>
+        
+      </ion-card-content>
+    </ion-card>
+  </ion-content>

@@ -14,15 +14,15 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 })
 export class AllNewsPage {
 
-  noticias: any[] = [];
-  noticiasUsuarios: any[] = [];
+  noticias: any;
+  noticiasUsuarios: any;
   searchForm: any;
-  noticiasFav : any [] = [];
+  noticiasFav : any;
 
   ionViewWillEnter(){
     this.storage.get('usuario').then(data => {
       this.newsProvider.contieneNews(data).then(data => {
-        this.noticiasFav = data['noticia'];
+        this.noticiasFav = data;
         console.log(data);
       }).catch(err => {
         console.log('No autorizado');
@@ -44,7 +44,7 @@ export class AllNewsPage {
     });
 
     this.newsProvider.news().then(data => {
-      this.noticias = data['noticia'];
+      this.noticias = data;
     }).catch(err => {
       console.log(err.error);
       this.toastCtrl.create({
@@ -55,7 +55,7 @@ export class AllNewsPage {
     });
 
     this.newsProvider.noticiasUsuarios().then(data => {
-      this.noticiasUsuarios = data['noticia'];
+      this.noticiasUsuarios = data;
     }).catch(err => {
       console.log(err.error);
       this.toastCtrl.create({
@@ -74,7 +74,8 @@ export class AllNewsPage {
   }
 
   shareNew(noticia) {
-    this.socialSharing.share(noticia["titulo"], noticia["descripcion"], noticia["foto"], noticia["url"]).then(() => {
+    let foto = "http://ardbud.pythonanywhere.com/media/"+noticia["foto"];
+    this.socialSharing.share(noticia["titulo"], noticia["descripcion"],foto, noticia["url"]).then(() => {
       console.log("shareNew: Success");
     }).catch(() => {
       console.error("shareNew: failed");
@@ -97,7 +98,7 @@ export class AllNewsPage {
     }
     else{
       for(i=0; this.noticiasFav.length>i;i++){
-        if(this.noticiasFav[i]['noticia_id'] == noticia_id){
+        if(this.noticiasFav[i]["fields"]['noticia_id'] == noticia_id){
           res = true;
           break;
         }
@@ -105,9 +106,10 @@ export class AllNewsPage {
       return res;
     }
     
+    
   }
 
-  countUsers(noticia_id){
+  /* countUsers(noticia_id){
     let res = 0;
     var i;
     if(this.noticiasUsuarios == null){
@@ -122,7 +124,7 @@ export class AllNewsPage {
       return res;
     }
     
-  }
+  } */
 
   addNew(noticia_id){
     this.storage.get('usuario').then(data => {
@@ -187,4 +189,12 @@ export class AllNewsPage {
     alert.present();
   }
 
+  fotoVacia(foto){
+    if(foto == null){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 }

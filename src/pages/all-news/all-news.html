@@ -31,35 +31,31 @@ background-color: transparent; background-image: url('assets/imgs/backgroundNews
           <ion-avatar item-start>
             <img src="../assets/imgs/logo.jpg">
           </ion-avatar>
-          <h2>{{noticia.titulo}}</h2>
-          <p><ion-icon name="calendar"></ion-icon> {{noticia.fecha}}</p>
+          <h2>{{noticia.fields.titulo}}</h2>
+          <p><ion-icon name="calendar"></ion-icon> {{noticia.fields.fecha}}</p>
         </ion-item>
-      
-        <img src="{{noticia.foto}}">
-      
+          <img src="http://ardbud.pythonanywhere.com/media/{{noticia.fields.foto}}">
         <ion-card-content style="overflow:hidden;" ng-init="n = 2" >
-          <p>{{noticia.descripcion}}</p>
-          <button (click)="ampliarDescripcion(noticia.titulo, noticia.descripcion)">ver más</button>
+          <p>{{noticia.fields.descripcion}}</p>
+          <button (click)="ampliarDescripcion(noticia.fields.titulo, noticia.fields.descripcion)">ver más</button>
         <ion-row>
-          <ion-col *ngIf="containsNew(noticia.noticia_id) == true" >
-            <button ion-button icon-start clear small (click)="removeNew(noticia.noticia_id)">
+          <ion-col *ngIf="containsNew(noticia.pk) == true" >
+            <button ion-button icon-start clear small (click)="removeNew(noticia.pk)">
               <ion-icon name="heart" color="danger"></ion-icon>
-              <div>likes</div>
             </button>
           </ion-col>
-          <ion-col *ngIf="containsNew(noticia.noticia_id) == false">
-            <button ion-button icon-start clear small (click)="addNew(noticia.noticia_id)">
+          <ion-col *ngIf="containsNew(noticia.pk) == false">
+            <button ion-button icon-start clear small (click)="addNew(noticia.pk)">
                 <ion-icon name="heart" color="asecon"></ion-icon>
-                <div>likes</div>
               </button>
           </ion-col>
           <ion-col>
-            <a ion-button icon-start clear small href="{{noticia.url}}">
+            <a ion-button icon-start clear small href="{{noticia.fields.url}}">
               <ion-icon name="share-alt" color="secondary"></ion-icon>
             </a>
           </ion-col>
           <ion-col center text-center>
-            <button ion-button icon-start clear small (click)="shareNew(noticia)" >
+            <button ion-button icon-start clear small (click)="shareNew(noticia.fields)" >
               <ion-icon name="share" color="primary"></ion-icon>
             </button>
           </ion-col>

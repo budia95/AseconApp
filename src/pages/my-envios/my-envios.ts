@@ -5,6 +5,9 @@ import {NavController, NavParams, ToastController, AlertController} from 'ionic-
 import {HomePage} from "../home/home";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import { Storage } from '@ionic/storage';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';  
+import { File } from '@ionic-native/file'; 
+import { InAppBrowser } from '@ionic-native/in-app-browser'
 
 @Component({
   selector: 'my-envios',
@@ -12,16 +15,17 @@ import { Storage } from '@ionic/storage';
 })
 export class MyEnviosPage {
 
-  envios: any[] = [];
+  envios: any;
   searchForm: any;
   showButton: boolean;
+  private fileTransfer: FileTransferObject; 
 
   constructor(public storage : Storage, public navCtrl: NavController, public navParams: NavParams, private enviosProvider: EnviosProvider,  public toastCtrl: ToastController,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController, private transfer: FileTransfer, private file: File, private iab: InAppBrowser) {
       
       this.storage.get('usuario').then(data => {
         this.enviosProvider.myEnvios(data).then(data => {
-          this.envios = data['envio'];
+          this.envios = data;
           console.log(data);
         }).catch(err => {
           console.log('No autorizado');
@@ -47,6 +51,10 @@ export class MyEnviosPage {
 
   createEnvio() {
   this.navCtrl.push(CreateEnvioPage);
+  }
+
+  descargar(envio){
+    window.open("http://ardbud.pythonanywhere.com/media/"+envio["archivo"], '_system');
   }
 
   /* reloadEnvios() {

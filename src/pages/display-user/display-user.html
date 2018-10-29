@@ -1,71 +1,31 @@
-<!--
-  Generated template for the EditUserPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><ion-icon name='person' is-active="false" color="asecon"></ion-icon> Mi perfil</ion-title>
+    <ion-title><ion-icon name="person" color="asecon"></ion-icon> Mi perfil</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
-<ion-content class="guay" *ngFor="let usuario of usuarios" >
-  <div class="guay" >
-      <div class="photo">
-        <img src="assets/imgs/student-hat.png"/>
+<ion-content padding >
+  <ion-card style="border-radius: 25px;" *ngFor="let usuario of usuarios">
+    <img src="assets/imgs/logo2.jpg"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{usuario.fields.nombre}} {{usuario.fields.apellidos}}
+        </ion-card-title>
+      <p>
+        <ion-icon name="pin" color="asecon"></ion-icon> {{usuario.fields.direccion}}
+      </p>
+      <p>
+        <ion-icon name="call" color="asecon"></ion-icon> {{usuario.fields.telefono}}
+      </p>
+      <p>
+        <ion-icon name="mail" color="asecon"></ion-icon> {{usuario.fields.email}}
+      </p>
+      <br>
+      <div class="boton">
+      <button ion-button (click)="cambiarContrasena()" round color="asecon" icon-start><ion-icon name="lock"></ion-icon> Cambiar contraseña</button>
       </div>
-      <fieldset>
-        <legend><span class="number"><ion-icon name="ios-person"></ion-icon></span> Info Principal</legend>
-
-        <div class="name-input">
-          <ion-label><ion-icon name='md-brush'></ion-icon> Nombre</ion-label>
-          <p>{{usuario.nombre}}</p>
-        </div>
-<!--
-         <div class="surname-input">
-          <ion-label><ion-icon name='md-brush'></ion-icon> Apellidos</ion-label>
-          <p>{{user.apellidos}}</p>
-        </div> 
-
-        <div class="email-input">
-          <ion-label><ion-icon name='md-mail' color="danger"></ion-icon> Email</ion-label>
-          <p>{{user.email}}</p>
-        </div>
-
-        <div class="address-input">
-          <ion-label><ion-icon name='ios-pin' color="danger"></ion-icon> Dirección</ion-label>
-          <p>{{user.password}}</p>
-        </div> -->
-     
-      </fieldset>
-      <!-- <fieldset>
-        <legend><span class="number"><ion-icon name="md-add"></ion-icon></span> Info Adicional</legend>
-        <div class="link-input">
-          <ion-label><ion-icon name='md-at' color="danger" ></ion-icon> Perfil profesional</ion-label>
-          <a href="{{user.linkedin}}" target="_blank">{{user.linkedin}}</a>
-        </div>
-        <div class="bio-input">
-          <ion-label><ion-icon name='ios-book'></ion-icon> Biografía</ion-label>
-          <p>{{user.bio}}</p>
-        </div>
-
-      </fieldset>
-      <fieldset >
-        <legend><span class="number"><ion-icon name="md-ribbon"></ion-icon></span> Experiencias</legend>
-          <ion-list class="third">
-            <ion-item *ngFor="let experience of user.experiences">
-              <p><ion-icon name='ios-school' color="" is-active="false"></ion-icon> {{experience.name}}</p>
-              <p><ion-icon name='ios-quote' is-active="false"></ion-icon> {{experience.description}}</p>
-              <p><ion-icon name='md-calendar' is-active="false"></ion-icon> {{experience.date}}</p>
-            </ion-item>
-          </ion-list>
-      </fieldset> -->
-  </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

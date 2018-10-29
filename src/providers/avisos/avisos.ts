@@ -15,7 +15,7 @@ export class AvisosProvider {
   }
 
   avisos() {
-    return this.api.get('listAvisos.php').then(data => {
+    return this.api.get2('listAvisos').then(data => {
       return data;
     });
   }
