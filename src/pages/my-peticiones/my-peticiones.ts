@@ -42,6 +42,30 @@ export class MyPeticionesPage {
     });
   }
 
+  getDate(date){
+    let fecha = new Date(date)
+    let dd = fecha.getDate();
+    let mm = fecha.getMonth()+1; //January is 0!
+    let dds;
+    let mms;
+
+    let yyyy = fecha.getFullYear();
+    if(dd<10){
+        dds='0'+dd.toString();
+    } 
+    else{
+      dds = dd.toString()
+    }
+    if(mm<10){
+        mms='0'+mm.toString();
+    } 
+    else{
+      mms = mm.toString()
+    }
+    return dds+'/'+mms+'/'+yyyy;
+
+  }
+
   createEnvio(peticion) {
   this.navCtrl.push(CreateEnvioPage, peticion);
   }

@@ -3,6 +3,7 @@ my-envios {
   .card-background-page {
 
     ion-card {
+      font-family : "Manuscrito" !important;
       position: relative;
       text-align: center;
       border-radius: 20px;
@@ -24,7 +25,7 @@ my-envios {
     .card-fecha {
       font-size: 1.0em;
       position: absolute;
-      top: 55%;
+      top: 50%;
       width: 100%;
       color: #3C3C3C;
       text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
@@ -33,7 +34,7 @@ my-envios {
     .card-archivo {
       font-size: 1.0em;
       position: absolute;
-      top: 73%;
+      top: 65%;
       width: 100%;
       color: #fff;
     }

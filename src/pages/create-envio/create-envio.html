@@ -21,16 +21,25 @@
 
             <ion-label><ion-icon name="calendar"></ion-icon> Fecha envio - Fecha límite</ion-label>
             <br>
-            <p>{{peticion.fields.fechaEnvio}} - {{peticion.fields.fechaLimite}}</p>
+            <p>{{getDate(peticion.fields.fechaEnvio)}} - {{getDate(peticion.fields.fechaLimite)}}</p>
       </fieldset>
       <fieldset>
         <form id="formulario" [formGroup]="createEnvioForm" (ngSubmit)="createEnvio()" method="POST">
         <legend><span class="number">2</span> Envío</legend>
+        <br>
         <ion-label>Título</ion-label>
         <ion-input type="text" formControlName="titulo" placeholder="Debe rellenar este campo"></ion-input>
         <ion-label>Adjuntar archivo</ion-label>
         <button ion-button (click)="openDoc()" color="asecon"><ion-icon name="folder-open"></ion-icon></button>
-      <button class="enter" ion-button round type="submit" [disabled]="!createEnvioForm.valid && !hasArchivo">Responder</button>
+        <br>
+        <br>
+        <div *ngIf="hasArchivo">
+          <br>
+          <br>
+          <p><ion-icon name="checkbox" color="asecon"></ion-icon> Archivo listo para envio.</p>
+        </div>
+        <br>
+      <button class="enter" ion-button round type="submit" [disabled]="!createEnvioForm.valid || !hasArchivo">Responder</button>
       </form>
       </fieldset>
     </div>

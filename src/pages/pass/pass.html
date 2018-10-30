@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><ion-icon name='ios-person-add' is-active="false" color="asecon"></ion-icon> Login</ion-title>
+    <ion-title><ion-icon name='lock' is-active="false" color="asecon"></ion-icon> Cambio de contraseña</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
@@ -16,15 +16,15 @@
                 <form [formGroup]="passForm" (ngSubmit)="changePass()" method="POST">
           
                   <div class="password-input">
-                    <ion-input [type]="show ? 'text' : 'password'" formControlName="password" aria-placeholder="Contraseña"></ion-input>
+                    <ion-input [type]="show ? 'text' : 'password'" formControlName="password" placeholder="Nueva contraseña"></ion-input>
                   <a (click)="togglePassword()">{{ show ? 'ocultar' : 'mostrar' }}</a>
                   </div>
           
                   <div class="password-input">
-                      <ion-input [type]="show ? 'text' : 'password'" formControlName="confirmPassword" aria-placeholder="Repetir contraseña"></ion-input>
+                      <ion-input [type]="show ? 'text' : 'password'" formControlName="confirmPassword" placeholder="Repetir contraseña"></ion-input>
                   </div>
           
-                  <button class="enter" ion-button type="submit" [disabled]="!passForm.valid">Cambiar</button>
+                  <button ion-button round type="submit" [disabled]="!passForm.valid" color="asecon">Cambiar</button>
                 </form>
               </div>
             </div>

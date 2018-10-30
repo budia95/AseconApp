@@ -16,16 +16,16 @@
                 <form [formGroup]="loginForm" (ngSubmit)="login()">
           
                   <div class="email-input">
-                    <ion-input type="email" formControlName="email" (ionblur)="validateEmail()"></ion-input>
+                    <ion-input class="email" type="email" formControlName="email" (ionblur)="validateEmail()" placeholder="Correo electrónico"></ion-input>
                     <p class="dos" color="danger" ion-text *ngIf="loginForm.get('session').hasError('pattern')">Caracteres inválidos</p>
                   </div>
           
                   <div class="password-input">
-                      <ion-input [type]="show ? 'text' : 'password'" formControlName="password"></ion-input>
+                      <ion-input class="password" [type]="show ? 'text' : 'password'" formControlName="password" placeholder="Contraseña"></ion-input>
                     <a (click)="togglePassword()">{{ show ? 'ocultar' : 'mostrar' }}</a>
                   </div>
           
-                  <button class="enter" ion-button type="submit" [disabled]="!loginForm.valid">Entrar</button>
+                  <button ion-button round type="submit" [disabled]="!loginForm.valid" color="asecon">Entrar</button>
                 </form>
               </div>
             </div>

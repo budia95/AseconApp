@@ -32,7 +32,7 @@ background-color: transparent; background-image: url('assets/imgs/backgroundNews
             <img src="../assets/imgs/logo.jpg">
           </ion-avatar>
           <h2>{{noticia.fields.titulo}}</h2>
-          <p><ion-icon name="calendar"></ion-icon> {{noticia.fields.fecha}}</p>
+          <p><ion-icon name="calendar"></ion-icon> {{getDate(noticia.fields.fecha)}}</p>
         </ion-item>
       
         <img src="http://ardbud.pythonanywhere.com/media/{{noticia.fields.foto}}">

@@ -11,6 +11,7 @@ all-avisos{
   ion-card {
     position: relative;
     text-align: center;
+    font-family : "Manuscrito" !important;
     -webkit-box-shadow: 6px 9px 17px -4px rgba(0,0,0,0.75);
     -moz-box-shadow: 6px 9px 17px -4px rgba(0,0,0,0.75);
     box-shadow: 6px 9px 17px -4px rgba(0,0,0,0.75);
@@ -25,28 +26,24 @@ all-avisos{
     font-size: 1.5em;
     width: 100%;
     font-weight: bold;
-    color: #fff;
-      text-shadow: 1px 0 0 black, -1px 0 0 black, 0 1px 0 black, 0 -1px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+    
   }
 
   .card-fecha {
-    font-size: 1.0em;
+    font-size: 1.2em;
     position: absolute;
     top: 80%;
     width: 100%;
-    color: #fff;
-    text-shadow: 1px 0 0 black, -1px 0 0 black, 0 1px 0 black, 0 -1px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+    font-weight: bold;
   }
 
   .card-subtitle {
-    font-size: 1.0em;
+    font-size: 1.2em;
     position: absolute;
     padding-left: 25px;
     padding-right: 25px;
     top: 40%;
     width: 100%;
-    color: #fff;
-    text-shadow: 1px 0 0 black, -1px 0 0 black, 0 1px 0 black, 0 -1px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
   }
 }
 }

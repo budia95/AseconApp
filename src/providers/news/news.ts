@@ -40,7 +40,7 @@ export class NewsProvider {
   }
 
   addNew(usuario_id, noticia_id) {
-    return this.api.post('addNew', {noticia_id:noticia_id,usuario_id:usuario_id}).then(data => {
+    return this.api.post('addNew', JSON.stringify({noticia_id:noticia_id,usuario_id:usuario_id})).then(data => {
       return data;
     });;
   }

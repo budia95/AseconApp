@@ -29,8 +29,8 @@ background-color: transparent; background-image: url('assets/imgs/backgroundEnvi
       <ion-card >
         <img src="assets/imgs/envios.jpg"/>
         <div class="card-title" text-wrap>{{envio.fields.titulo}}</div>
-        <div class="card-fecha"><ion-icon name="send"></ion-icon> {{envio.fields.fecha}}</div>
-        <div class="card-archivo"><button ion-button round color="azulBoton" (click)="descargar(envio.fields)"><ion-icon name="eye"></ion-icon></button></div>
+        <div class="card-fecha"><ion-icon name="send"></ion-icon> {{getDate(envio.fields.fecha)}}</div>
+        <div class="card-archivo"><button ion-button round color="azulBoton" (click)="descargar(envio.fields)"><ion-icon name="folder-open"></ion-icon></button></div>
       </ion-card>
      <br>
     </ion-item>

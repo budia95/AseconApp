@@ -103,14 +103,14 @@ export class CreateEnvioPage {
     
   }
 
-  getDate(){
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth()+1; //January is 0!
+  getDate(date){
+    let fecha = new Date(date)
+    let dd = fecha.getDate();
+    let mm = fecha.getMonth()+1; //January is 0!
     let dds;
     let mms;
 
-    let yyyy = today.getFullYear();
+    let yyyy = fecha.getFullYear();
     if(dd<10){
         dds='0'+dd.toString();
     } 
@@ -123,7 +123,8 @@ export class CreateEnvioPage {
     else{
       mms = mm.toString()
     }
-    return yyyy+'-'+mms+'-'+dds;
+    return dds+'/'+mms+'/'+yyyy;
+
   }
 
   envioCreated() {
