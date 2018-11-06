@@ -15,7 +15,7 @@ export class PeticionesProvider {
   }
 
   myPeticiones(user_id) {
-    return this.api.get2('myPeticiones',{user_id:user_id}).then(data => {
+    return this.api.post('myPeticiones',JSON.stringify({acceso:'movil',user_id:user_id})).then(data => {
       return data;
     });;
   }

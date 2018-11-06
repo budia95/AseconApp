@@ -15,7 +15,7 @@ export class AvisosProvider {
   }
 
   avisos() {
-    return this.api.get2('listAvisos').then(data => {
+    return this.api.post('listAvisos',JSON.stringify({acceso:'movil'})).then(data => {
       return data;
     });
   }

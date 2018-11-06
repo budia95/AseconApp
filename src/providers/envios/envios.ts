@@ -20,7 +20,7 @@ export class EnviosProvider {
   }
 
   myEnvios(user_id) {
-    return this.api.get2('myEnvios', {user_id:user_id}).then(data => {
+    return this.api.post('myEnvios',JSON.stringify({acceso:'movil',user_id:user_id})).then(data => {
       return data;
     });
   }

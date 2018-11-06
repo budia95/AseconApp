@@ -15,7 +15,7 @@ export class RecibosProvider {
   }
 
   myRecibos(usuario_id) {
-    return this.api.get2('myRecibos',{usuario_id:usuario_id}).then(data => {
+    return this.api.post('myRecibos',JSON.stringify({acceso:'movil',usuario_id:usuario_id})).then(data => {
       return data;
     });;
   }

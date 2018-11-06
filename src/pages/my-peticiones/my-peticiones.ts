@@ -15,9 +15,8 @@ export class MyPeticionesPage {
   peticiones: any;
   searchForm: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private peticionesProvider: PeticionesProvider,  public toastCtrl: ToastController,
-    private alertCtrl: AlertController, public storage : Storage) {
-     
+  ionViewWillEnter(){
+
     this.storage.get('usuario').then(data => {
       this.peticionesProvider.myPeticiones(data).then(data => {
         this.peticiones = data;
@@ -40,6 +39,13 @@ export class MyPeticionesPage {
         position: 'bottom'
       }).present();
     });
+    
+  }
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private peticionesProvider: PeticionesProvider,  public toastCtrl: ToastController,
+    private alertCtrl: AlertController, public storage : Storage) {
+     
   }
 
   getDate(date){

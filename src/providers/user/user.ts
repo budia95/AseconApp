@@ -26,7 +26,7 @@ export class UserProvider {
   }
 
   displayUser(id) {
-    return  this.api.get2('displayUser',{usuario_id:id}).then(data => {
+    return  this.api.post('displayUser',JSON.stringify({acceso:'movil',usuario_id:id})).then(data => {
       return data;
     });
   }
@@ -36,5 +36,11 @@ export class UserProvider {
       return data;
     });
   }
- 
+
+  olvidar(email) {
+    return  this.api.post('sendPass',JSON.stringify({email:email})).then(data => {
+      return data;
+    });
+  }
+
 }

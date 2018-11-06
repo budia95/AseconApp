@@ -56,7 +56,8 @@ export class PassPage {
 
       let changePass = {
         usuario_id : data,
-        password : this.passForm.value.password
+        password : this.passForm.value.password,
+        acceso:'movil'
       }
 
       this.userProvider.changePass(changePass).then(data => {
@@ -70,7 +71,8 @@ export class PassPage {
         }
         else{
           let alert = this.alertCtrl.create({
-            message: 'La contraseña se ha actualizado correctamente.'
+            message: 'La contraseña se ha actualizado correctamente.',
+            buttons: ['OK']
           });
           alert.present();
           this.menu.enable(true, 'leftMenu');

@@ -3,12 +3,12 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><ion-icon name='ios-person-add' is-active="false" color="asecon"></ion-icon> Login</ion-title>
+    <ion-title><ion-icon name='lock' is-active="false" color="asecon"></ion-icon> Recordar contraseña</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
     <ion-card style="border-radius: 25px; width: 80%; position:absolute; left: 8%;">
-      <img src="assets/imgs/login.png"/>
+      <img src="assets/imgs/pass.png"/>
       <ion-card-content>
           <div class="content-align-wrapper">
               <div class="content-align">
@@ -16,18 +16,12 @@
                 <form [formGroup]="loginForm" (ngSubmit)="login()">
           
                   <div class="email-input">
+                    <ion-label>Confirme su correo</ion-label>
                     <ion-input class="email" type="email" formControlName="email" (ionblur)="validateEmail()" placeholder="Correo electrónico"></ion-input>
                     <p class="dos" color="danger" ion-text *ngIf="loginForm.get('session').hasError('pattern')">Caracteres inválidos</p>
                   </div>
           
-                  <div class="password-input">
-                      <ion-input class="password" [type]="show ? 'text' : 'password'" formControlName="password" placeholder="Contraseña"></ion-input>
-                    <a (click)="togglePassword()">{{ show ? 'ocultar' : 'mostrar' }}</a>
-                  </div>
-                  <a (click)="olvidarPass()">¿Has olvidado tu contraseña?</a>
-                  <br>
-                  <br>
-                  <button ion-button round type="submit" [disabled]="!loginForm.valid" color="asecon">Entrar</button>
+                  <button ion-button round type="submit" [disabled]="!loginForm.valid" color="asecon">Restablecer</button>
                 </form>
               </div>
             </div>

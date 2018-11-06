@@ -66,11 +66,22 @@ export class CreateEnvioPage {
     else if(this.plt.is('ios')){
       this.filePicker.pickFile()
       .then(uri => {
-        let alert = this.alertCtrl.create({
-          message: uri,
-        });
-        alert.present();
-        console.log(uri)
+        this.filePath.resolveNativePath(uri)
+        .then(file => {
+          let filePath: string = file;
+          this.arrayPath = file.split(".");
+          this.tipoArchivo = this.arrayPath[1];
+          if (filePath) {
+            this.base64.encodeFile(filePath)
+                    .then((base64File: string) => {
+                      this.archivo = base64File;
+                      this.hasArchivo = true;
+            }).catch(err => {
+              alert('err'+JSON.stringify(err));
+            });
+          }
+    })
+    .catch(err => {console.log(err)});
       })
       .catch(err => console.log('Error', err));
     }
@@ -86,7 +97,8 @@ export class CreateEnvioPage {
             usuario_id : data,
             peticion_id : this.peticion['pk'],
             archivo : this.archivo,
-            extension : this.tipoArchivo
+            extension : this.tipoArchivo,
+            acceso:'movil'
           }
 
           this.enviosProvider.createEnvio(envio).then(data => {
@@ -130,6 +142,7 @@ export class CreateEnvioPage {
   envioCreated() {
     let alert = this.alertCtrl.create({
       message: 'Envio realizado correctamente',
+      buttons: ['OK']
     });
     alert.present();
   }

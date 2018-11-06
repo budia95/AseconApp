@@ -168,14 +168,14 @@ export class MyNewsPage {
 
   addCreated() {
     let alert = this.alertCtrl.create({
-      message: 'Añadida a tus noticias favoritas.',
+      message: 'Añadida a tus noticias favoritas.'
     });
     alert.present();
   }
 
   removeAlert() {
     let alert = this.alertCtrl.create({
-      message: 'Eliminada de tus noticias favoritas.',
+      message: 'Eliminada de tus noticias favoritas.'
     });
     alert.present();
   }

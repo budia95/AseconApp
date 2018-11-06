@@ -20,23 +20,13 @@ export class MyEnviosPage {
   showButton: boolean;
   private fileTransfer: FileTransferObject; 
 
-  constructor(public storage : Storage, public navCtrl: NavController, public navParams: NavParams, private enviosProvider: EnviosProvider,  public toastCtrl: ToastController,
-    private alertCtrl: AlertController, private transfer: FileTransfer, private file: File, private iab: InAppBrowser) {
-      
-      this.storage.get('usuario').then(data => {
-        this.enviosProvider.myEnvios(data).then(data => {
-          this.envios = data;
-          console.log(data);
-        }).catch(err => {
-          console.log('No autorizado');
-          this.navCtrl.setRoot(HomePage);
-          this.toastCtrl.create({
-            message: 'Fallo al cargar.',
-            duration: 3000,
-            position: 'bottom'
-          }).present();
-        });
-       }).catch(err => {
+  ionViewWillEnter(){
+
+    this.storage.get('usuario').then(data => {
+      this.enviosProvider.myEnvios(data).then(data => {
+        this.envios = data;
+        console.log(data);
+      }).catch(err => {
         console.log('No autorizado');
         this.navCtrl.setRoot(HomePage);
         this.toastCtrl.create({
@@ -45,6 +35,20 @@ export class MyEnviosPage {
           position: 'bottom'
         }).present();
       });
+     }).catch(err => {
+      console.log('No autorizado');
+      this.navCtrl.setRoot(HomePage);
+      this.toastCtrl.create({
+        message: 'Fallo al cargar.',
+        duration: 3000,
+        position: 'bottom'
+      }).present();
+    });
+
+  }
+
+  constructor(public storage : Storage, public navCtrl: NavController, public navParams: NavParams, private enviosProvider: EnviosProvider,  public toastCtrl: ToastController,
+    private alertCtrl: AlertController, private transfer: FileTransfer, private file: File, private iab: InAppBrowser) {
       
       
   }

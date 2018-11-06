@@ -35,6 +35,7 @@ import {MyNewsPage} from "../pages/my-news/my-news";
 import {MyRecibosPage} from "../pages/my-recibos/my-recibos";
 import {DisplayUserPage} from "../pages/display-user/display-user";
 import { PassPage } from "../pages/pass/pass";
+import { OlvidarPage } from "../pages/olvidar/olvidar";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -64,7 +65,8 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     AreasPage,
     GeoPage,
     ContactoPage,
-    PassPage
+    PassPage,
+    OlvidarPage
   ],
 
   imports: [
@@ -93,7 +95,8 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     AreasPage,
     GeoPage,
     ContactoPage,
-    PassPage
+    PassPage,
+    OlvidarPage
   ],
 
   providers: [
