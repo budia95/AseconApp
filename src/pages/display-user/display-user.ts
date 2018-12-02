@@ -13,6 +13,7 @@ import {HomePage} from "../home/home";
 })
 export class DisplayUserPage {
 
+  //Método para hacer la carga de datos al acceder a esta vista
   ionViewWillEnter(){
     this.storage.get('usuario').then(data => {
       this.userProvider.displayUser(data).then(data => {
@@ -46,6 +47,7 @@ export class DisplayUserPage {
 
   }
 
+  //Navegar a la vista de cambio de contraseña
   cambiarContrasena(){
     this.navCtrl.push(PassPage);
   }

@@ -73,6 +73,7 @@ export class AllNewsPage {
 
   }
 
+  //Implementación del boton para compartir la noticia en todas las redes disponibles en el móvil
   shareNew(noticia) {
     let foto = "http://ardbud.pythonanywhere.com/media/"+noticia["foto"];
     this.socialSharing.share(noticia["titulo"], noticia["descripcion"],foto, noticia["url"]).then(() => {
@@ -82,6 +83,7 @@ export class AllNewsPage {
     });
   }
 
+ //Botón ver más de la noticia para poder ver el cuerpo entero de la noticia 
   ampliarDescripcion(titulo, descripcion){
     let alert = this.alertCtrl.create({
       title: titulo,
@@ -90,6 +92,7 @@ export class AllNewsPage {
     alert.present();
   }
 
+  //Médoto para comprobar que la noticia que le entra está entre las noticicas favoritas del usuario actual
   containsNew(noticia_id){
     let res = false;
     var i;
@@ -109,23 +112,7 @@ export class AllNewsPage {
     
   }
 
-  /* countUsers(noticia_id){
-    let res = 0;
-    var i;
-    if(this.noticiasUsuarios == null){
-      return res;
-    }
-    else{
-      for(i=0; this.noticiasUsuarios.length>i;i++){
-        if(this.noticiasFav[i]['noticia_id'] == noticia_id){
-          res++;
-        }
-      }
-      return res;
-    }
-    
-  } */
-
+  //Implementación para añadir las noticia que le entra a las noticias favoritas del usuario actual
   addNew(noticia_id){
     this.storage.get('usuario').then(data => {
       this.newsProvider.addNew(data, noticia_id).then(data => {
@@ -150,6 +137,7 @@ export class AllNewsPage {
     });
   }
 
+  //Implementación para eliminar de favoritas la noticia que le entra al método
   removeNew(noticia_id){
     this.storage.get('usuario').then(data => {
       this.newsProvider.removeNew(data, noticia_id).then(data => {
@@ -175,6 +163,7 @@ export class AllNewsPage {
     
   }
 
+  //Lanzamiento del aviso de que la noticia se ha añadido a las favoritas correctamente
   addCreated() {
     let alert = this.alertCtrl.create({
       message: 'Añadida a tus noticias favoritas.',
@@ -182,6 +171,7 @@ export class AllNewsPage {
     alert.present();
   }
 
+  //Lanzamiento del aviso de que la noticia se ha eliminado de las favoritas correctamente
   removeAlert() {
     let alert = this.alertCtrl.create({
       message: 'Eliminada de tus noticias favoritas.',
@@ -198,6 +188,7 @@ export class AllNewsPage {
     }
   }
 
+  //parseado de fecha
   getDate(date){
     let fecha = new Date(date)
     let dd = fecha.getDate();

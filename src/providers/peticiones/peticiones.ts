@@ -14,6 +14,7 @@ export class PeticionesProvider {
   constructor(public api: ApiProvider) {
   }
 
+  //Devuelve todas las peticiones relacionadas a un usuario
   myPeticiones(user_id) {
     return this.api.post('myPeticiones',JSON.stringify({acceso:'movil',user_id:user_id})).then(data => {
       return data;

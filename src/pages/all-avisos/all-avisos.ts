@@ -35,6 +35,7 @@ export class AllAvisosPage {
     });
   }
 
+  //parseado de fecha
   getDate(date){
     let fecha = new Date(date)
     let dd = fecha.getDate();

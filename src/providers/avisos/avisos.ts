@@ -14,6 +14,7 @@ export class AvisosProvider {
   constructor(public api: ApiProvider) {
   }
 
+  //Devuelve la list de avisos
   avisos() {
     return this.api.post('listAvisos',JSON.stringify({acceso:'movil'})).then(data => {
       return data;

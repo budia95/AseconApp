@@ -13,12 +13,14 @@ export class EnviosProvider {
   constructor(public api: ApiProvider) {
   }
 
+  //Envío de los datos del formulario
   createEnvio(envio) {
     return this.api.post('createEnvio', JSON.stringify(envio)).then(data => {
       return data;
     });;
   }
 
+  //Devuelve la lista de envios realizados
   myEnvios(user_id) {
     return this.api.post('myEnvios',JSON.stringify({acceso:'movil',user_id:user_id})).then(data => {
       return data;

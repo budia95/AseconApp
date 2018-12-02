@@ -180,6 +180,7 @@ export class MyNewsPage {
     alert.present();
   }
 
+  //parseado de fecha
   getDate(date){
     let fecha = new Date(date)
     let dd = fecha.getDate();

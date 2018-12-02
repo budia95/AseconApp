@@ -2,7 +2,6 @@ import { DisplayUserPage } from './../pages/display-user/display-user';
 import { TabsPage } from './../pages/tabs/tabs';
 import { Tabs2Page } from './../pages/tabs2/tabs2';
 import { LoginPage } from './../pages/login/login';
-import { AuthServiceProvider } from './../providers/auth-service/auth-service';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, MenuController, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -24,7 +23,7 @@ export class MyApp {
   pages: Array<{title: string, component: any, tabIndex?: number, icon?: string }>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
-    public events: Events, public menuCtrl: MenuController, public storage: Storage, public auth : AuthServiceProvider) {
+    public events: Events, public menuCtrl: MenuController, public storage: Storage) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation

@@ -34,18 +34,25 @@ export class CreateEnvioPage {
 
   }
 
+  //Seleccionar documento del gestor de archivos del teléfono para enviarlo
   openDoc(){
+    this.archivo = "";
+    //Comprobar que tipo de sistema operativo estamos utilizando
     if (this.plt.is('android')) {
+      //Selector de archivo del gestor de documentos
         this.fileChooser.open()
         .then(uri => {
+          //Resolver la dirección donde se encuentra el archivo
           this.filePath.resolveNativePath(uri)
           .then(file => {
             let filePath: string = file;
+            //Recoger el tipo de extensión que tiene el archivo que hemos seleccionado
             this.arrayPath = file.split(".");
             this.tipoArchivo = this.arrayPath[1];
             if (filePath) {
+              //Pasamos la dirección resuelta y la pasamos a base64 para el envío
               this.base64.encodeFile(filePath)
-                      .then((base64File: string) => {
+                      .then((base64File: string) => { 
                         this.archivo = base64File;
                         this.hasArchivo = true;
               }).catch(err => {
@@ -87,11 +94,13 @@ export class CreateEnvioPage {
     }
   }
 
+  //Envio de los datos al servidor
   createEnvio(envio) {
     console.log(this.navParams);
 
         this.storage.get('usuario').then(data => {
 
+          //Recogida de los datos necesarios para el envío
           let envio = {
             titulo : this.createEnvioForm.value.titulo,
             usuario_id : data,
@@ -101,6 +110,7 @@ export class CreateEnvioPage {
             acceso:'movil'
           }
 
+          //Envío al servidor
           this.enviosProvider.createEnvio(envio).then(data => {
             this.envioCreated();
             console.log(data);
@@ -115,6 +125,7 @@ export class CreateEnvioPage {
     
   }
 
+  //parseado de fecha
   getDate(date){
     let fecha = new Date(date)
     let dd = fecha.getDate();
@@ -139,6 +150,7 @@ export class CreateEnvioPage {
 
   }
 
+  //Aviso de que el archivo ha sido enviado con éxito.
   envioCreated() {
     let alert = this.alertCtrl.create({
       message: 'Envio realizado correctamente',

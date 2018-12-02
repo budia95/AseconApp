@@ -28,7 +28,6 @@ import { LoginPage } from '../pages/login/login';
 import {AllAvisosPage} from "../pages/all-avisos/all-avisos";
 import {AllNewsPage} from "../pages/all-news/all-news";
 import {CreateEnvioPage} from "../pages/create-envio/create-envio";
-import {CreateCambioPage} from "../pages/create-cambio/create-cambio";
 import {MyEnviosPage} from "../pages/my-envios/my-envios";
 import {MyPeticionesPage} from "../pages/my-peticiones/my-peticiones";
 import {MyNewsPage} from "../pages/my-news/my-news";
@@ -51,7 +50,6 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     MyApp,
     HomePage,
     LoginPage,
-    CreateCambioPage,
     AllAvisosPage,
     AllNewsPage,
     CreateEnvioPage,
@@ -81,7 +79,6 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     MyApp,
     HomePage,
     LoginPage,
-    CreateCambioPage,
     AllAvisosPage,
     AllNewsPage,
     CreateEnvioPage,

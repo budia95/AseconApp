@@ -20,8 +20,10 @@ export class MyEnviosPage {
   showButton: boolean;
   private fileTransfer: FileTransferObject; 
 
+  //Ejecutar las acciones de dentro del método al acceder a la vista
   ionViewWillEnter(){
 
+    //Cargar la lista de envíos
     this.storage.get('usuario').then(data => {
       this.enviosProvider.myEnvios(data).then(data => {
         this.envios = data;
@@ -53,10 +55,12 @@ export class MyEnviosPage {
       
   }
 
+  //Navegación a la página 
   createEnvio() {
   this.navCtrl.push(CreateEnvioPage);
   }
 
+  //Botón para descargar el archivo que hemos enviado
   descargar(envio){
     window.open("http://ardbud.pythonanywhere.com/media/"+envio["archivo"], '_system');
   }

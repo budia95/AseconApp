@@ -59,6 +59,7 @@ export class LoginPage {
     this.userProvider.getUser(user.email, user.password).then(data => {
      
       console.log(data.toString());
+      //Si la respuesta de la llamada al proveedor devuelve un string vacío es que algo ha fallado
       if(data.toString() === ''){
         this.toastCtrl.create({
           message: 'Usuario o contraseña incorrectos.',
@@ -67,9 +68,10 @@ export class LoginPage {
         }).present({});
       }
       else{
+        //Si accedemos guardamos el id del usuario en el localstorage
         this.storage.set('usuario', data[0]["pk"]).then(data => {
           this.events.publish('login:update', data);
-          // TODO: Login susccesfully -> Redirect to main page
+          // Redirigimos a la página principal y activamos el menú desplegable
           this.menu.enable(true, 'leftMenu');
           this.navCtrl.setRoot(HomePage, {}, {animate: true, direction: 'forward'});
         }).catch(err => {
@@ -81,42 +83,17 @@ export class LoginPage {
           }).present({});
         });
       }
-     
-     
       
     })
 
-  
-
-
-      // TODO: save api_token and check if session must be saved
-     
-    
-     /*.then(data => {
-
-      // TODO: save api_token and check if session must be saved
-      this.storage.set('auth', data).then(() => {
-
-        // TODO: Login susccesfully -> Redirect to main page
-        this.menu.enable(true, 'leftMenu');
-        this.navCtrl.setRoot(HomePage, {}, {animate: true, direction: 'forward'});
-      });
-
-    }).catch(err => {
-      console.log(err.error);
-      this.toastCtrl.create({
-        message: err.error,
-        duration: 3000,
-        position: 'bottom'
-      }).present({});
-    }); */
-
   }
 
+  //Navegación a la página para recordar la contraseña
   olvidarPass(){
     this.navCtrl.push(OlvidarPage);
   }
 
+  //Validación del correo electrónico
   validateEmail() {
     if (this.loginForm.controls['email'].errors && this.loginForm.value.email) {
       this.emailError = true;
@@ -125,6 +102,7 @@ export class LoginPage {
     }
   }
 
+  //Mostrar la contraseña
   togglePassword() {
     this.show = !this.show;
   }

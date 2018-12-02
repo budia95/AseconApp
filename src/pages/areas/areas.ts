@@ -12,6 +12,8 @@ export class AreasPage {
 
   }
 
+   //Implementación de la amplición de cada área 
+   
   fiscal(){
     let alert = this.alertCtrl.create({
       title: 'Asesoramiento fiscal',

@@ -14,7 +14,10 @@ export class HomePage {
 
   logueado : boolean = false;
 
+  //Ejecutar las acciones al acceder a la vista
   ionViewWillEnter(){
+
+    //Comprobar que hay un usuario logado
     this.storage.get('usuario').then((val) => {
       if (val !== null) {
         this.logueado = true;
@@ -30,6 +33,8 @@ export class HomePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private storage : Storage) {
 
   }
+
+  //Navegación a otras vistas 
 
   areas(){
     this.navCtrl.push(AreasPage);
